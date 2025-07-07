@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+nav {
+    height: 12vh;
+    width: 100%;
+    background-color: rgb(38, 38, 42);
+    color: #fff;
+}
+nav ul {
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 18px;
+}
+nav li a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.container {
+    min-height: 100%;
+    width: 100%;
+    background-color:rgb(1, 2, 20);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+    gap: 20px;
+}
+.container>h1 {
+    color: #fff;
+    margin-top: 40px;
+}
+
+.input_sec {
+    height: 45px;
+    min-height: 8%;
+    width: 60%;
+    display: flex;
+}
+.input_sec input {
+    height: 100%;
+    width: 85%;
+    border: none;
+    border-radius: 10px 0px 0px 10px;
+    padding: 5px 20px;
+}
+.input_sec input::placeholder {
+    font-size: 16px;
+    color: rgb(43, 43, 99);
+}
+.input_sec input:focus {
+    outline: 2px solid rgb(56, 56, 78);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;;
+}
+.input_sec button {
+    height: 100%;
+    width: 14%;
+    border-radius: 0px 10px 10px 0px;
+    border: none;
+    background-color: rgb(43, 43, 99);
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+
+    &:hover {
+        background-color: rgb(32, 32, 76);
+    }
+}
+.input_sec .clearBtn {
+    margin-left: 5px;
+    border-radius: 10px;
+    background-color: green;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(7, 105, 7);
+    }
+}
+
+
+.listParent {
+    width: 60%;
+    background-color: transparent;
+}
+.listParent li {
+    height: 55px;
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 0px 25px;
+    color: #fff;
+    border: 1px solid #6e6d6d;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.listParent li p {
+    color: #6e6d6d;
+}
+.listParent li button {
+    height: 30px;
+    width: 70px;
+    margin: 0px 5px;
+    border: 0;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.edit {
+    color: #fff;
+    background-color: rgb(96, 150, 194);
+
+    &:hover {
+        background-color: rgb(78, 123, 161);
+    }
+}
+.delete {
+    color: #fff;
+    background-color: rgb(154, 39, 31);
+
+    &:hover {
+        background-color: rgb(121, 30, 23);
+    }
+}
+
+.inputField {
+    height: 65%;
+    width: 20%;
+    padding: 10px;
+    background-color: transparent;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+
+    &:focus {
+        outline: none;
+    }
+}

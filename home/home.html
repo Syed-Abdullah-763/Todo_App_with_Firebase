@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
+  <body>
+
+    <nav>
+        <ul>
+            <li><a href="./home.html">Home</a></li>
+            <li><a href="../profile/profile.html">Profile</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+      <h1>ToDo List Application</h1>
+
+      <section class="input_sec">
+        <input type="text" placeholder="Write here to add list..." id="todoInput" />
+        <button id="addBtn">Add</button>
+        <button class="clearBtn" id="clearAllBtn">Clear All</button>
+      </section>
+
+      <div class="note" id="note"></div>
+
+      <ul class="listParent" id="parent">
+        
+      </ul>
+    </div>
+
+    <script src="home.js" type="module"></script>
+  </body>
+</html>
