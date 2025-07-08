@@ -27,8 +27,6 @@ async function addTodo() {
   try {
     var todoInput = document.getElementById("todoInput");
 
-    var userObj = JSON.parse(localStorage.getItem("userLogin"));
-
     var newDate = new Date();
     var hours = newDate.getHours();
     var zone = "am";
@@ -40,7 +38,6 @@ async function addTodo() {
 
     var todoObj = {
       value: todoInput.value,
-      email: userObj.email,
       date: `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`,
       time: `${hours}:${newDate.getMinutes()}${zone}`,
     };
@@ -60,7 +57,6 @@ function renderUI(tododata, todoId) {
 
   parent.innerHTML += `<li id="${todoId}">
           <h4>${tododata.value}</h4>
-          <p>${tododata.email}</p>
           <p>(${tododata.date}) ${tododata.time}</p>
           <div class="btns">
             <button class="edit editBtn">Edit</button>
