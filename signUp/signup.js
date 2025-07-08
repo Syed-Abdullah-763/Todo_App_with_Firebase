@@ -1,61 +1,35 @@
+
+import { createUserWithEmailAndPassword, auth, setDoc, db, doc } from "../firbase/firebase.js";
+
 const signupHandle = document.querySelector("#signupHandler")
 
 signupHandle.addEventListener("click", signupHandler)
 
-function signupHandler() {
-  var firstName = document.getElementById("firstName");
-  var lastName = document.getElementById("lastName");
-  var email = document.getElementById("email");
-  var password = document.getElementById("password");
+async function signupHandler() {
+  try {
+    var firstName = document.getElementById("firstName").value;
+  var lastName = document.getElementById("lastName").value;
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
 
-  var userObj = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    email: email.value,
-    password: password.value,
-  };
+  const userAuth = await createUserWithEmailAndPassword(auth, email, password)
 
-  var users = localStorage.getItem("users");
-  
-
-  if (users == null) {
-    var userArr = [userObj];
-
-    localStorage.setItem("users", JSON.stringify(userArr));
-  } else {
-    var userArr = JSON.parse(users);
-
-    var check = true;
-    for (var i = 0; i < userArr.length; i++) {
-        
-        if (email.value == userArr[i].email) {
-        check = false;
-        var error = document.getElementById("error");
-
-        error.textContent = "Enter Unique Email Adress.";
-
-        return;
-      }
-    }
-
-    if (check == true) {
-      userArr.push(userObj);
-
-      var error = document.getElementById("error");
-        error.textContent = "";
-
-      localStorage.setItem("users", JSON.stringify(userArr));
-
-      localStorage.setItem("userLogin",JSON.stringify(userObj))
-      alert("LogIn Complete")
-
-      // window.location.href = "../home/home.html";
-      window.location.replace("../home/home.html")
-    }
+  const userObj = {
+    firstName,
+    lastName,
+    email,
+    uid: userAuth.user.uid,
   }
 
-  firstName.value = "";
-  lastName.value = "";
-  email.value = "";
-  password.value = "";
+  await setDoc(doc(db, "users", userAuth.user.uid,), userObj)
+  
+      firstName = "";
+      lastName = "";
+      email = "";
+      password = "";
+
+      window.location.replace("../home/home.html")
+  } catch (error) {
+    alert(error.message)
+  }
 }

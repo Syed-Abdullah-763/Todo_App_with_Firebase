@@ -1,4 +1,4 @@
-import { app, db, collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "../firebase.js";
+import { app, db, collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "../firbase/firebase.js";
 
 const todoCollection = collection(db, "todos");
 const addBtn = document.querySelector("#addBtn");
