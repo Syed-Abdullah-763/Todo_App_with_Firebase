@@ -12,17 +12,17 @@ async function signupHandler() {
   var email = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
-  const userAuth = await createUserWithEmailAndPassword(auth, email, password)
+  const response = await createUserWithEmailAndPassword(auth, email, password)
 
   const userObj = {
     firstName,
     lastName,
     email,
-    uid: userAuth.user.uid,
+    uid: response.user.uid,
   }
 
-  await setDoc(doc(db, "users", userAuth.user.uid), userObj)
-  localStorage.setItem("uid" ,userAuth.user.uid)
+  await setDoc(doc(db, "users", response.user.uid), userObj)
+  localStorage.setItem("uid" , response.user.uid)
   
       firstName = "";
       lastName = "";

@@ -147,6 +147,7 @@ h1 {
 }
 .form input:focus {
     outline: 2px solid #00eaff;
+    border: 1.5px solid #00eaff;
     background: rgba(0,234,255,0.08);
 }
 .form input::placeholder {
