@@ -8,7 +8,8 @@ async function loginHandler() {
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
 
-    await signInWithEmailAndPassword(auth, email, password);
+    const userAuth = await signInWithEmailAndPassword(auth, email, password);
+    localStorage.setItem("uid" , userAuth.user.uid)
 
     email = "";
     password = "";

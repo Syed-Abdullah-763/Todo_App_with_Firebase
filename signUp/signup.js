@@ -21,7 +21,8 @@ async function signupHandler() {
     uid: userAuth.user.uid,
   }
 
-  await setDoc(doc(db, "users", userAuth.user.uid,), userObj)
+  await setDoc(doc(db, "users", userAuth.user.uid), userObj)
+  localStorage.setItem("uid" ,userAuth.user.uid)
   
       firstName = "";
       lastName = "";
