@@ -1,12 +1,22 @@
-import { app, db, collection, addDoc, getDocs, updateDoc, doc, deleteDoc } from "../firbase/firebase.js";
+import { app, db, collection, addDoc, getDocs, getDoc, updateDoc, doc, deleteDoc } from "../firbase/firebase.js";
 
 const todoCollection = collection(db, "todos");
 const addBtn = document.querySelector("#addBtn");
 const clearAllBtn = document.querySelector("#clearAllBtn");
-
+let todoUser;
 window.addEventListener("load", catchData);
 addBtn.addEventListener("click", addTodo);
 clearAllBtn.addEventListener("click", clearAllTodos);
+
+const fetchUserData = async () => {
+  try {
+    const userUid = localStorage.getItem("uid");
+  const user = await getDoc(doc(db, "users", userUid));
+  todoUser = user.data();
+  } catch (error) {
+    alert(error.message)
+  }
+};
 
 async function catchData() {
   try {
@@ -14,7 +24,6 @@ async function catchData() {
     querySnapshot.forEach((element) => {
       const todoData = element.data();
       const todoId = element.id;
-      console.log(element.data());
 
       renderUI(todoData, todoId);
     });
@@ -27,6 +36,10 @@ async function addTodo() {
   try {
     var todoInput = document.getElementById("todoInput");
 
+    if(!todoInput){
+      return
+    }
+
     var newDate = new Date();
     var hours = newDate.getHours();
     var zone = "am";
@@ -37,7 +50,8 @@ async function addTodo() {
     }
 
     var todoObj = {
-      value: todoInput.value,
+      value: todoInput.value, 
+      email: todoUser.email,
       date: `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`,
       time: `${hours}:${newDate.getMinutes()}${zone}`,
     };
@@ -98,10 +112,8 @@ async function editVal(el) {
     const liElement = el.target.closest("li");
     const h4 = liElement.querySelector("h4");
 
-
     if (editBtn.innerHTML === "Done") {
       const input = liElement.querySelector("input");
-
       const newDate = new Date();
       let hours = newDate.getHours();
       let zone = "am";
@@ -116,7 +128,6 @@ async function editVal(el) {
         date: `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`,
         time: `${hours}:${newDate.getMinutes()}${zone}`,
       });
-
       
       const newh4 = document.createElement("h4");
       newh4.textContent = input.value;
@@ -156,3 +167,6 @@ async function clearAllTodos() {
     console.log("Error deleting collection:", error.message);
   }
 }
+
+
+window.fetchUserData = fetchUserData;
