@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
+    <title>My Todos</title>
     <link rel="stylesheet" href="myTodods.css" />
   </head>
-  <body>
+  <body onload="fetchMyTodos(); fetchUserData()">
     <div class="animated-bg">
       <div class="bg-circle bg-circle1"></div>
       <div class="bg-circle bg-circle2"></div>
@@ -14,16 +14,23 @@
     </div>
 
     <nav>
+      <button class="burger" id="burgerBtn" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
         <ul>
-            <li><a href="./home.html">Home</a></li>
-            <li><a href="./home.html">My Todos</a></li>
-            <li><a href="./home.html">Profile</a></li>
-            <li><a href="./home.html">LogOut</a></li>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="./mytodo.html" class="active">My Todos</a></li>
+          <li><a href="../profile/profile.html">Profile</a></li>
+          <li><a href="../logout.html">LogOut</a></li>
         </ul>
+      </div>
     </nav>
 
     <div class="container">
-      <h1>ToDo List Application</h1>
+      <h1>My Todos</h1>
 
       <section class="input_sec">
         <input type="text" placeholder="Write here to add list..." id="todoInput" />

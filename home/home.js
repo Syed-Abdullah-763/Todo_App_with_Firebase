@@ -1,4 +1,23 @@
-import { app, db, collection, addDoc, getDocs, getDoc, updateDoc, doc, deleteDoc } from "../firbase/firebase.js";
+import {
+  app,
+  db,
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "../firbase/firebase.js";
+
+// Burger menu toggle
+const burgerBtn = document.getElementById("burgerBtn");
+const navLinks = document.getElementById("navLinks");
+burgerBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("open");
+  burgerBtn.classList.toggle("open");
+  burgerBtn.setAttribute("aria-expanded", navLinks.classList.contains("open"));
+});
 
 const todoCollection = collection(db, "todos");
 const addBtn = document.querySelector("#addBtn");
@@ -11,10 +30,10 @@ clearAllBtn.addEventListener("click", clearAllTodos);
 const fetchUserData = async () => {
   try {
     const userUid = localStorage.getItem("uid");
-  const user = await getDoc(doc(db, "users", userUid));
-  todoUser = user.data();
+    const user = await getDoc(doc(db, "users", userUid));
+    todoUser = user.data();
   } catch (error) {
-    alert(error.message)
+    alert(error.message);
   }
 };
 
@@ -34,10 +53,10 @@ async function catchData() {
 
 async function addTodo() {
   try {
-    var todoInput = document.getElementById("todoInput");
+    var todoInput = document.getElementById("todoInput").value;
 
-    if(!todoInput){
-      return
+    if (!todoInput) {
+      return;
     }
 
     var newDate = new Date();
@@ -50,15 +69,16 @@ async function addTodo() {
     }
 
     var todoObj = {
-      value: todoInput.value, 
+      value: todoInput,
       email: todoUser.email,
+      uid: todoUser.uid,
       date: `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`,
       time: `${hours}:${newDate.getMinutes()}${zone}`,
     };
 
     const response = await addDoc(todoCollection, todoObj);
 
-    todoInput.value = "";
+    todoInput = "";
     renderUI(todoObj, response.id);
   } catch (error) {
     console.log(error.message);
@@ -89,7 +109,7 @@ document.getElementById("parent").addEventListener("click", function (e) {
   }
 });
 
-  async function deleteval(e) {
+async function deleteval(e) {
   try {
     const li = e.target.closest("li");
     const todoId = li.id;
@@ -104,7 +124,6 @@ document.getElementById("parent").addEventListener("click", function (e) {
     console.error(error);
   }
 }
-
 
 async function editVal(el) {
   try {
@@ -128,14 +147,13 @@ async function editVal(el) {
         date: `${newDate.getDate()}-${newDate.getMonth()}-${newDate.getFullYear()}`,
         time: `${hours}:${newDate.getMinutes()}${zone}`,
       });
-      
+
       const newh4 = document.createElement("h4");
       newh4.textContent = input.value;
       liElement.replaceChild(newh4, input);
 
       editBtn.innerHTML = "Edit";
     } else {
-
       const inputField = document.createElement("input");
       inputField.type = "text";
       inputField.value = h4.textContent;
@@ -151,7 +169,6 @@ async function editVal(el) {
   }
 }
 
-
 async function clearAllTodos() {
   try {
     const querySnapshot = await getDocs(collection(db, "todos"));
@@ -162,11 +179,10 @@ async function clearAllTodos() {
 
     await Promise.all(deletePromises);
 
-    window.location.reload()
+    window.location.reload();
   } catch (error) {
     console.log("Error deleting collection:", error.message);
   }
 }
-
 
 window.fetchUserData = fetchUserData;

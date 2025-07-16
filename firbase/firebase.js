@@ -13,6 +13,8 @@ import {
   updateDoc,
   deleteDoc,
   setDoc,
+  query,
+  where
 } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 import {
@@ -49,5 +51,7 @@ export {
   auth,
   createUserWithEmailAndPassword,
   setDoc,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  query,
+  where
 };
