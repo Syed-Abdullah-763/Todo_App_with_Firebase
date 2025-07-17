@@ -113,7 +113,15 @@ async function deleteval(e) {
   try {
     const li = e.target.closest("li");
     const todoId = li.id;
+    
+    const todoData = await getDoc(doc(db, "todos", todoId))
+    const todoCreator = await getDoc(doc(db, "users", todoData.data().uid))
 
+    if(todoUser.email != todoData.data().email){
+      alert(`You don't have permission to delete this todo. It was created by ${todoCreator.data().firstName} ${todoCreator.data().lastName}.`)
+      return
+    }
+    
     const confirmDelete = confirm("Are you sure you want to delete this todo?");
     if (!confirmDelete) return;
 
@@ -130,6 +138,15 @@ async function editVal(el) {
     const editBtn = el.target;
     const liElement = el.target.closest("li");
     const h4 = liElement.querySelector("h4");
+    const todoId = liElement.id;
+
+    const todoData = await getDoc(doc(db, "todos", todoId))
+    const todoCreator = await getDoc(doc(db, "users", todoData.data().uid))
+
+    if(todoUser.email != todoData.data().email){
+      alert(`You don't have permission to Edit this todo. It was created by ${todoCreator.data().firstName} ${todoCreator.data().lastName}.`)
+      return
+    }
 
     if (editBtn.innerHTML === "Done") {
       const input = liElement.querySelector("input");
