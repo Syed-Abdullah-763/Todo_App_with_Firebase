@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logout</title>
+    <link rel="stylesheet" href="logout.css" />
+  </head>
+  <body>
+    <div class="animated-bg">
+      <div class="bg-circle bg-circle1"></div>
+      <div class="bg-circle bg-circle2"></div>
+      <div class="bg-circle bg-circle3"></div>
+    </div>
+
+    <nav>
+      <button
+        class="burger"
+        id="burgerBtn"
+        aria-label="Open navigation"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="../myTodos/mytodo.html">My Todos</a></li>
+          <li><a href="../profile/profile.html">Profile</a></li>
+          <li><a href="./logout.html" class="active">LogOut</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="logout-container">
+      <div class="logout-card" id="card">
+        <img src="../images/person-icon-blue-15.png" alt="Logout Icon" class="logout-icon" id="dp"/>
+        <h1 id="h1"></h1>
+        <p>Thank you for using ToDo App.<br />We hope to see you again soon!</p>
+        <button class="logout-btn" onclick="logOutHandler()">Logout</button>
+      </div>
+    </main>
+
+    <script src="logout.js" type="module"></script>
+  </body>
+</html>
