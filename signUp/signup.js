@@ -3,6 +3,15 @@ import { createUserWithEmailAndPassword, auth, setDoc, db, doc } from "../firbas
 
 const signupHandle = document.querySelector("#signupHandler")
 
+const authCheck = () => {
+  const uid = localStorage.getItem("uid")
+  
+  if(uid){
+    window.location.replace("./home/home.html")
+  }
+}
+
+window.addEventListener("load", authCheck)
 signupHandle.addEventListener("click", signupHandler)
 
 async function signupHandler() {

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="profile.css">
+
+</head>
+<body>
+
+    <div class="animated-bg">
+      <div class="bg-circle bg-circle1"></div>
+      <div class="bg-circle bg-circle2"></div>
+      <div class="bg-circle bg-circle3"></div>
+    </div>
+
+    <nav>
+      <button class="burger" id="burgerBtn" aria-label="Open navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <ul>
+          <li><a href="../home/home.html">Home</a></li>
+          <li><a href="../myTodos/mytodo.html">My Todos</a></li>
+          <li><a href="./profile.html" class="active">Profile</a></li>
+          <li><a href="../logout.html">LogOut</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile_image">
+            <img src="" alt="Profile Picture" id="imageChange">
+            <input type="file" accept="img/*" id="fileInput" hidden>
+            <button id="selectImg">Select Prfile Image</button>
+        </div>
+
+        <div class="fields" id="fieldsParent">
+            <label for="">First Name</label>
+            <input type="text" placeholder="First Name" id="firstName">
+            <label for="">Last Name</label>
+            <input type="text" placeholder="Last Name" id="lastName">
+            <label for="">Email</label>
+            <input type="text" placeholder="Email" id="email">
+
+            <button>Update Profile</button>
+        </div>
+    </div>
+
+    <script src="profile.js" type="module"></script>
+</body>
+</html>

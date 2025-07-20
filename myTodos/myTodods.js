@@ -28,6 +28,15 @@ let todoUser;
 addBtn.addEventListener("click", addTodo);
 clearAllBtn.addEventListener("click", clearAllTodos);
 
+const routeCheck = () => {
+  const uid = localStorage.getItem("uid")
+
+  if(!uid) {
+    window.location.replace("../index.html")
+  }
+}
+window.addEventListener("load", routeCheck);
+
 const fetchUserData = async () => {
   try {
     const userUid = localStorage.getItem("uid");

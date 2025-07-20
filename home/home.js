@@ -23,9 +23,20 @@ const todoCollection = collection(db, "todos");
 const addBtn = document.querySelector("#addBtn");
 const clearAllBtn = document.querySelector("#clearAllBtn");
 let todoUser;
+
+const routeCheck = () => {
+  const uid = localStorage.getItem("uid")
+
+  if(!uid) {
+    window.location.replace("../index.html")
+  }
+}
+
+window.addEventListener("load", routeCheck);
 window.addEventListener("load", catchData);
 addBtn.addEventListener("click", addTodo);
 clearAllBtn.addEventListener("click", clearAllTodos);
+
 
 const fetchUserData = async () => {
   try {
