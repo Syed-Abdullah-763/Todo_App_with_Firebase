@@ -28,6 +28,7 @@ async function signupHandler() {
     lastName,
     email,
     uid: response.user.uid,
+    imageUrl: false,
   }
 
   await setDoc(doc(db, "users", response.user.uid), userObj)

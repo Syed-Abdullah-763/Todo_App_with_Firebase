@@ -48,8 +48,7 @@ const fileHandler = async () => {
       imageUrl: res.secure_url
     })
 
-    imageChange.src = ""
-    imageChange.src = res.secure_url
+    fetcUser()
   } catch (error) {
     console.log(error.message);
   }
@@ -69,7 +68,7 @@ const fetcUser = async () => {
   lastname.value = userData.lastName;
   email.value = userData.email;
   
-  if(!imageChange) {
+  if(!userData.imageUrl) {
     imageChange.src = "../images/person-icon-blue-15.png";
   }else{
     imageChange.src = userData.imageUrl;
